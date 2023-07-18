@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Account-Flared</title>
+    <title>Status</title>
 </head>
 <body onload="checkCookie()">
 
@@ -23,11 +23,6 @@
         <span class="btn-text-one"> Hub</span>
         <span class="btn-text-two" onclick="location.href = 'https://plingifyplug.github.io/Hub/';" id="myButton" class="btn">Click Here</span>
     </button>
-                  <button class="btn">
-        <span class="btn-text-one"> Hub-Welsh</span>
-        <span class="btn-text-two" onclick="location.href = 'https://plingifyplug.github.io/Hub-Welsh/';" id="myButton" class="btn">Cliciwch Yma</span>
-    </button>
-      </button>
 
 <button class="btn">
 <span class="btn-text-one"> Terms-Rules</span>
@@ -104,6 +99,8 @@ We also use them to see if the correct peole are using our paid sites. We hope y
 
 
     <script src="//code.tidio.co/1j4sx6r4tgoyt0duta9txfzbkbjwhdb8.js" async></script>
+    <script src="https://static.elfsight.com/platform/platform.js" data-use-service-core defer></script>
+<div class="elfsight-app-71b4b7e1-d9ab-48a0-9182-b21eaf50f164"></div>
 </body>
 <style>
 .CodesBox{
@@ -355,40 +352,4 @@ a:active {
     </script>
   
   
-  <script>
-    function setCookie(cname,cvalue,exdays) {
-      const d = new Date();
-      d.setTime(d.getTime() + (exdays*24*60*60*1000));
-      let expires = "expires=" + d.toUTCString();
-      document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
-    }
-    
-    function getCookie(cname) {
-      let name = cname + "=";
-      let decodedCookie = decodeURIComponent(document.cookie);
-      let ca = decodedCookie.split(';');
-      for(let i = 0; i < ca.length; i++) {
-        let c = ca[i];
-        while (c.charAt(0) == ' ') {
-          c = c.substring(1);
-        }
-        if (c.indexOf(name) == 0) {
-          return c.substring(name.length, c.length);
-        }
-      }
-      return "";
-    }
-    
-    function checkCookie() {
-      let user = getCookie("username");
-      if (user != "") {
-        alert("Welcome again " + user);
-      } else {
-         user = prompt("Please enter your email address to acces the site using a fake email will result in being banned.:","");
-         if (user != "" && user != null) {
-           setCookie("username", user, 30);
-         }
-      }
-    }
-    </script>
 </html>
