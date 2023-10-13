@@ -7,6 +7,12 @@
 </head>
 <body onload="checkCookie()">
 
+  
+<div class="popup-container">
+  <div class="popup-box">
+      <p>Please remember to never share your <b>personal information, passwords, address, bank details, emails or phone numbers</b> on this site unless a staff member requires it in the Tidio Live Chat Panel</p>
+  </div>
+</div>
 
 <div class="TEXT">
     <div class="img">
@@ -75,6 +81,35 @@
 <script src="//code.tidio.co/fqvdg3bbolzxb9xf9mig2yfqpuaj5wt1.js" async></script>
 </body>
 <style>
+
+.popup-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+
+    z-index: 999;
+    display: none;
+    transition: opacity 0.3s; /* Add a transition for fading */
+}
+
+.popup-box {
+    background: #fff;
+    padding: 20px;
+    border-radius: 0px 0px 15px 15px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+    text-align: center;
+}
+
+.popup-box p {
+    margin: 0;
+}
+
 .CodesBox{
   background-color: #fff;
     border-radius: 10px;
@@ -106,8 +141,8 @@
 
 
 body {
-  background-image: url("https://imagetolink.com/ib/qE2v4IGt7k.png");
-  background-size: auto;
+background-color: #000;
+font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 
 }
 img{
