@@ -36,20 +36,20 @@
 <p>‎</p>
 <div class="CodesBox">
 <h2>Codes:</h2>
-<p><b style="color: #00ff2fce;">Online</b>-<b style="color: #00ff2fce;">Server Online No Website Linked</b>-<b style="color: #ff0000ce;">Server Offline</b>-<b style="color: #ff0000ce;">Offline</b>-<b style="color: #ff0000ce;">Coming-Soon</b>-<b style="color: #eaff00;">Account-Flared</b>-<b style="color: #eaff00;">Preparing To Shutdown</b>-<b style="color: #eaff00;">Error</b>-<b style="color: #eaff00;">Under-Review</b>-<b style="color: #eaff00;">Rebooting</b>-<b style="color: #eaff00;">Just Removed</b>-<b style="color: #eaff00;">Just Added</b></p>
+<p><b style="color: #00ff2fce;">Online</b>-<b style="color: #ff0000ce;">Offline</b>-<b style="color: #ff0000ce;">Downtime</b>-<b style="color: #eaff00;"></b>-<b style="color: #eaff00;">Preparing Downtime</b>-<b style="color: #eaff00;">Prepairing Uptime</b>-<b style="color: #eaff00;">Under-Review</b>-<b style="color: #eaff00;">Error</b></p>
 </div>
 
 
 
 <div class="Box-1">
 <h1>Websites:</h1>
-<p>PlingifyPlug<b style="color: #00ff2fce;">Online</b></p>
-<p>Terms-Rules<b style="color: #00ff2fce;">Online</b></p>
-<p>Browser-Versions<b style="color: #00ff2fce;">Online</b></p>
-<p>Account-Flared<b style="color: #00ff2fce;">Online</b></p>
-<p>Support<b style="color: #00ff2fce;">Online</b></p>
-<p>Status<b style="color: #00ff2fce;">Online</b></p>
-<p>Amafi<b style="color: #00ff2fce;">Online</b></p>
+<p>PlingifyPlug-<b style="color: #00ff2fce;">Online</b></p>
+<p>Terms-Rules-<b style="color: #00ff2fce;">Online</b></p>
+<p>Browser-Versions-<b style="color: #00ff2fce;">Online</b></p>
+<p>Account-Flared-<b style="color: #00ff2fce;">Online</b></p>
+<p>Support-<b style="color: #00ff2fce;">Online</b></p>
+<p>Status-<b style="color: #00ff2fce;">Online</b></p>
+<p>Amafi-<b style="color: #00ff2fce;">Online</b></p>
  </div>
 
  <div class="Box-2">
@@ -60,13 +60,14 @@
 
 <div class="Box-2">
     <h1>RammerHead-Site:</h1>
-<p>RammerHead<b style="color: #00ff2fce;">Online</b></p>
+
+    <p><b><div id="statusText">Online</div></b></p>
 
 </div>
     <div class="Box-3">
         <h1>Servers:</h1>
         <p>Github-<b style="color: #00ff2fce;">Online</b></p>
-        <p>XAMMP-LocalHost-<b style="color: #eaff00;">Server's Offline</b></p>
+        <p>XAMMP-LocalHost-<b style="color: #eaff00;">Offline</b></p>
         <p>Account-Flaring-<b style="color: #00ff2fce;">Online</b></p>
         <p>PASS-System-<b style="color: #00ff2fce;">Online</b></p>
         <p>Account-System-<b style="color: #00ff2fce;">Online</b></p>
@@ -82,6 +83,11 @@
 <script src="//code.tidio.co/fqvdg3bbolzxb9xf9mig2yfqpuaj5wt1.js" async></script>
 </body>
 <style>
+
+    /* CSS for the status text */
+    #statusText {
+        color: #00ff2fce; /* Initial text color */
+    }
 
 .popup-container {
     display: flex;
@@ -235,6 +241,40 @@ a:active {
 </style>
 
 <SCRIPT language="JavaScript"> 
+
+    // JavaScript for changing the status text and color based on the current time
+    var statusText = document.getElementById('statusText');
+    var currentTime = new Date();
+    var prepareDowntimeTime = new Date();
+    var downtimeTime = new Date();
+    var prepareUptimeTime = new Date();
+    var uptimeTime = new Date();
+
+    prepareDowntimeTime.setUTCHours(21, 55, 0); // Set the time to 9:55 PM GMT
+    downtimeTime.setUTCHours(22, 0, 0); // Set the time to 10 PM GMT
+    prepareUptimeTime.setUTCHours(4, 55, 0); // Set the time to 4:55 AM GMT
+    uptimeTime.setUTCHours(5, 0, 0); // Set the time to 5 AM GMT
+
+    function updateStatusText() {
+        currentTime = new Date();
+
+        if (currentTime >= prepareDowntimeTime && currentTime < downtimeTime) {
+            statusText.textContent = 'Preparing Downtime';
+            statusText.style.color = '#eaff00'; // Change the text color to #eaff00
+        } else if (currentTime >= downtimeTime && currentTime < prepareUptimeTime) {
+            statusText.textContent = 'Downtime';
+            statusText.style.color = '#ff0000ce'; // Change the text color to #ff0000ce
+        } else if (currentTime >= prepareUptimeTime && currentTime < uptimeTime) {
+            statusText.textContent = 'Preparing Uptime';
+            statusText.style.color = '#eaff00'; // Change the text color to #eaff00
+        } else {
+            statusText.textContent = 'Online';
+            statusText.style.color = '#00ff2fce'; // Change the text color to #00ff2fce
+        }
+    }
+
+    // Update status text and color every second
+    var statusUpdateInterval = setInterval(updateStatusText, 1000);
 
     function Time() {
     
