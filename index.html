@@ -61,7 +61,7 @@
 <div class="Box-2">
     <h1>RammerHead-Site:</h1>
 
-    <p><b><div id="statusText">Online</div></b></p>
+    <p><b> <div id="status">Online</div></b></p>
 
 </div>
     <div class="Box-3">
@@ -84,10 +84,9 @@
 </body>
 <style>
 
-    /* CSS for the status text */
-    #statusText {
-        color: #00ff2fce; /* Initial text color */
-    }
+#status {
+            color: #00ff2fce; /* Default Online Color */
+        }
 
 .popup-container {
     display: flex;
@@ -242,39 +241,31 @@ a:active {
 
 <SCRIPT language="JavaScript"> 
 
-    // JavaScript for changing the status text and color based on the current time
-    var statusText = document.getElementById('statusText');
+
+var statusElement = document.getElementById('status');
+
+function updateStatus() {
     var currentTime = new Date();
-    var prepareDowntimeTime = new Date();
-    var downtimeTime = new Date();
-    var prepareUptimeTime = new Date();
-    var uptimeTime = new Date();
+    var hours = currentTime.getUTCHours();
+    var minutes = currentTime.getUTCMinutes();
 
-    prepareDowntimeTime.setUTCHours(21, 55, 0); // Set the time to 9:55 PM GMT
-    downtimeTime.setUTCHours(22, 0, 0); // Set the time to 10 PM GMT
-    prepareUptimeTime.setUTCHours(4, 55, 0); // Set the time to 4:55 AM GMT
-    uptimeTime.setUTCHours(5, 0, 0); // Set the time to 5 AM GMT
-
-    function updateStatusText() {
-        currentTime = new Date();
-
-        if (currentTime >= prepareDowntimeTime && currentTime < downtimeTime) {
-            statusText.textContent = 'Preparing Downtime';
-            statusText.style.color = '#eaff00'; // Change the text color to #eaff00
-        } else if (currentTime >= downtimeTime && currentTime < prepareUptimeTime) {
-            statusText.textContent = 'Downtime';
-            statusText.style.color = '#ff0000ce'; // Change the text color to #ff0000ce
-        } else if (currentTime >= prepareUptimeTime && currentTime < uptimeTime) {
-            statusText.textContent = 'Preparing Uptime';
-            statusText.style.color = '#eaff00'; // Change the text color to #eaff00
-        } else {
-            statusText.textContent = 'Online';
-            statusText.style.color = '#00ff2fce'; // Change the text color to #00ff2fce
-        }
+    if (hours >= 5 && hours < 22) {
+        statusElement.textContent = "Online";
+        statusElement.style.color = "#00ff2fce"; // Online Color
+    } else if (hours === 22 && minutes >= 0 && minutes < 55) {
+        statusElement.textContent = "Preparing Downtime";
+        statusElement.style.color = "#eaff00"; // Preparing Downtime Color
+    } else if ((hours >= 22 && hours <= 23) || (hours >= 0 && hours < 5)) {
+        statusElement.textContent = "Downtime";
+        statusElement.style.color = "#ff0000ce"; // Downtime Color
+    } else if (hours === 5 && minutes < 55) {
+        statusElement.textContent = "Preparing Uptime";
+        statusElement.style.color = "#eaff00"; // Preparing Uptime Color
     }
+}
 
-    // Update status text and color every second
-    var statusUpdateInterval = setInterval(updateStatusText, 1000);
+updateStatus();
+setInterval(updateStatus, 1000);
 
     function Time() {
     
