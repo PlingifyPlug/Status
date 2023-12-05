@@ -363,6 +363,38 @@ setInterval(updateStatus, 1000);
 });
     </SCRIPT>
 
+        <script>
+    // Function to check if the user has visited the banned site in the last 24 hours
+    function hasVisitedBannedSite() {
+      var lastBannedVisit = document.cookie.replace(/(?:(?:^|.*;\s*)last_banned_visit\s*\=\s*([^;]*).*$)|^.*$/, "$1");
+      if (!lastBannedVisit) return false;
+
+      var currentTime = new Date().getTime();
+      var twentyFourHoursAgo = currentTime - (24 * 60 * 60 * 1000);
+      return parseInt(lastBannedVisit) > twentyFourHoursAgo;
+    }
+
+    // Function to set the last banned site visit time in a cookie
+    function setLastBannedVisitCookie() {
+      var currentTime = new Date().getTime();
+      document.cookie = 'last_banned_visit=' + currentTime + ';max-age=' + (24 * 60 * 60) + ';path=/';
+    }
+
+    // Function to redirect users if they have visited the banned site within 24 hours
+    function restrictAccess() {
+      if (!hasVisitedBannedSite()) {
+        setLastBannedVisitCookie(); // Set the last banned site visit cookie for tracking
+      } else {
+        window.location.href = 'https://plingifyplug.github.io/Account-Flared-Banned/'; // Redirect back to the banned site
+      }
+    }
+
+    // Call the function when the page loads
+    window.onload = function() {
+      restrictAccess();
+    };
+  </script>
+
 
   
   
